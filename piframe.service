@@ -1,0 +1,15 @@
+[Unit]
+Description=E-Ink Display
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python /path/to/piframe/main.py
+WorkingDirectory=/path/to/piframe/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=piframe  
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
