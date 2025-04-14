@@ -7,7 +7,7 @@ import requests
 from io import BytesIO
 from waveshare_epd import epd7in3f
 from config import Display, Paths
-from modules import add_timestamp
+from utils.image_tools import add_timestamp, invert_blackwhite
 
 def update_weather():
     try:
@@ -15,9 +15,10 @@ def update_weather():
         response.raise_for_status()
         image = Image.open(BytesIO(response.content)).convert('RGB')
         image = image.resize(Display.IMAGE_SIZE)
+        image = invert_blackwhite(image)
         logging.info("Weather data retrieved.")
         print("Weather data retrieved.")
-        add_timestamp.add_timestamp(image, (255, 255, 255))
+        add_timestamp(image, (0, 0, 0))
         return image
 
     except Exception as e:

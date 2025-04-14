@@ -5,7 +5,7 @@ import subprocess
 import logging
 import time
 from config import Display, Paths
-from modules import add_timestamp
+from utils.image_tools import add_timestamp
 
 def update_calendar():
     try:
@@ -25,7 +25,7 @@ def update_calendar():
             offset += 20
         # Save for debugging
         cal.save("calendar_output.bmp")
-        add_timestamp.add_timestamp(cal, 0)
+        add_timestamp(cal, 0)
         return cal 
 
     except Exception as e:
