@@ -18,6 +18,36 @@ def invert_blackwhite(image):
             # leave all other colors alone
     return inverted
 
+def invert_near_blackwhite(image, threshold):
+    """
+    Inverts pixels that are close to black or white.
+    
+    Args:
+        image: PIL Image in RGB mode.
+        threshold: Integer between 0-255. 
+                   Lower = stricter match to pure black/white, higher = more forgiving.
+    
+    Returns:
+        A new PIL Image with inverted black/white-like pixels.
+    """
+    inverted = image.copy()
+    pixels = inverted.load()
+
+    for y in range(inverted.height):
+        for x in range(inverted.width):
+            r, g, b = pixels[x, y]
+
+            # Calculate brightness: simple average or use luminance
+            brightness = (r + g + b) / 3
+
+            if brightness <= threshold:  # near black
+                pixels[x, y] = (255, 255, 255)
+            elif brightness >= 255 - threshold:  # near white
+                pixels[x, y] = (0, 0, 0)
+            # Leave midtones or colors alone
+
+    return inverted
+
 
 def add_timestamp(image, color):
     draw = ImageDraw.Draw(image)

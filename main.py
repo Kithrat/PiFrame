@@ -5,7 +5,7 @@ import time
 import sys
 import logging
 from waveshare_epd import epd7in3f
-from modules import wttr, cal
+from modules import wttr, cal, slideshow
 from config import Display, Paths
 
 # Logging setup
@@ -33,6 +33,8 @@ try:
         display_image(wttr.update_weather())
         time.sleep(1800)
         display_image(cal.update_calendar())
+        time.sleep(1800)
+        display_image(slideshow.update_slideshow())
         time.sleep(1800)
 
 except KeyboardInterrupt:

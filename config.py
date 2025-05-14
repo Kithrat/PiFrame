@@ -7,5 +7,5 @@ class Display:
 class Paths:
     LOG_FILE = "~/piframe_log.txt"
     REMIND_PATH = "~/.reminders/"
-    WEATHER_URL = "https://wttr.in/{YOUR_LOCATION}_1pqnT.png"
+    WEATHER_URL = "https://wttr.in/{YOUR_LOCATION}_1pqn.png"
 
